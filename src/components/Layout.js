@@ -7,7 +7,7 @@ import About from "./About";
 import { Route } from "react-router-dom";
 import styles from "../styles/Layout.css";
 
-const Layout = ({ cars, car, onView, completeService, startRental, endRental }) => {
+const Layout = ({ cars, car, carTyres, onView, completeService, completeTyreChange ,startRental, endRental }) => {
   console.log(cars);
   return (
     <>
@@ -33,7 +33,7 @@ const Layout = ({ cars, car, onView, completeService, startRental, endRental }) 
             <div className={"container"}>
               <main className={"main"}>
                 <Header />
-                <BigCar car={car} onView={onView} completeService={completeService} startRental={startRental} endRental={endRental} />
+                <BigCar car={car}  carTyres= {carTyres} onView={onView} completeService={completeService} completeTyreChange={completeTyreChange} startRental={startRental} endRental={endRental} />
               </main>
             </div>
           </>

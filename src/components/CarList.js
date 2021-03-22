@@ -13,7 +13,7 @@ import Car from "./Car";
 // };
 
 const CarList = ({ cars, onView}) => {
-  //   console.log(cars);
+    console.log(cars);
 
   return (
     <>

@@ -6,6 +6,7 @@ import axios from "axios";
 function App() {
   const [cars, setCars] = useState([]);
   const [car, setCar] = useState([]);
+  const [carTyres, setCarTyres] = useState([]);
   // console.log(cars);
 
   useEffect(() => {
@@ -35,7 +36,9 @@ function App() {
     console.log("yoyoyoyo");
     console.log(id);
     const carFromServer = await fetchCar(id);
+    const carTyresFromServer = carFromServer.tyres
     setCar(carFromServer);
+    setCarTyres(carTyresFromServer);
   };
 
   // Complete Service
@@ -44,9 +47,31 @@ function App() {
       `http://localhost:8080/service/completeservice/${id}`
     );
     console.log(res);
-    const data = await res.json();
-    console.log(data);
-    setCar(data);
+    const car = await res.json();
+    console.log(car);
+    setCar(car);
+    if (!car.needService) {
+      alert("Service completed");
+    } else {
+      alert("Service not completed");
+    }
+  };
+
+  // Change tyres
+  const sendTyreChange = async (id) => {
+    const res = await fetch(
+      `http://localhost:8080/service/changetyres/${id}`
+    );
+    console.log(res);
+    const car = await res.json();
+    console.log(car);
+    setCar(car);
+    setCarTyres(car.tyres)
+    if (car.tyreChangeCount === 0) {
+      alert("Tyres changed");
+    } else {
+      alert("Tyres could not be changed");
+    }
   };
 
   // Start Rental
@@ -55,44 +80,30 @@ function App() {
     const res = await fetch(`http://localhost:8080/service/startrental/${id}`);
     console.log(res);
     const data = await res.json();
-    console.log(data.message);
+    console.log(data.car);
     setCar(data.car);
   };
 
   // End Rental
-  const sendEndRental = async ( id, distancedTravelled) => {
+  const sendEndRental = async ( id, distanceTravelled) => {
     console.log("heyeye");
-    console.log(distancedTravelled);
+    console.log(distanceTravelled);
     console.log("oi");
+  
     const res = await fetch(`http://localhost:8080/service/endrental/${id}`, {
-      // headers: {'Content-Type': 'application/json'},
+      headers: {'Content-Type': 'application/json'},
 
-      // mode: 'cors', // no-cors, *cors, same-origin
-      // cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-      // credentials: 'same-origin', // include, *same-origin, omit
       method: 'PUT',
-      // body: JSON.parse(distancedTravelled),
-      body: {"distancedTravelled" : JSON.stringify(5000)},
+      body: distanceTravelled
     })
-
-    // axios
-    //   .put(`http://localhost:8080/service/endrental/${id}`, {distancedTravelled})
-    //   .then(async (res) => {
-    //     console.log("beep");
-    //     console.log(res);
-    //     console.log("hehehy");
-    //     const data = await res.json();
-    //     console.log(data.message);
-    //     setCar(data.car);
-
-    //   });
 
       console.log("beep");
       console.log(res);
       console.log("hehehy");
-      const data = await res.json();
-      console.log(data.message);
-      setCar(data.car);
+      const car = await res.json();
+      console.log(car);
+      setCar(car);
+      setCarTyres(car.tyres)
   };
 
   return (
@@ -101,8 +112,10 @@ function App() {
         <Layout
           cars={cars}
           car={car}
+          carTyres={carTyres}
           onView={viewCar}
           completeService={sendCompleteService}
+          completeTyreChange={sendTyreChange}
           startRental={sendStartRental}
           endRental={sendEndRental}
         />

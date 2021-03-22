@@ -1,24 +1,30 @@
 import carStyles from "../styles/Car.css";
 import { Button } from "@material-ui/core";
-import { TextField } from "@material-ui/core";
-import {useState} from "react"
+import { useState } from "react";
+import Tyre from "./Tyre";
+import Collapsible from "react-collapsible";
 
-
-
-export const BigCar = ({ car, onView, completeService, startRental, endRental }) => {
-  console.log(car);
-  const [miles, setMiles] = useState("")
+export const BigCar = ({
+  car,
+  carTyres,
+  completeService,
+  completeTyreChange,
+  startRental,
+  endRental,
+}) => {
+  console.log(car.tyres);
+  const [miles, setMiles] = useState("");
 
   const onSubmit = (e) => {
-    e.preventDefault()
-    if(!miles) {
-      alert("Please enter the miles the car has travelled")
+    e.preventDefault();
+    if (!miles) {
+      alert("Please enter the miles the car has travelled");
       return;
     }
     const milesInt = parseInt(miles, 10);
-    endRental(car.id, milesInt)
-    setMiles("")
-  }
+    endRental(car.id, milesInt);
+    setMiles("");
+  };
 
   return (
     <>
@@ -50,16 +56,36 @@ export const BigCar = ({ car, onView, completeService, startRental, endRental })
           </p>
         )}
         <p>Miles until serivce is required: {car.milesTillService}</p>
-        <p>Tyres needed ------</p>
+
+        {/* {carTyres.map((tyre) => (
+          <Tyre key={tyre.id} tyre={tyre} />
+        ))} */}
+     
+          <Collapsible
+            className={"collapsible"}
+            trigger="View Tyre Information"
+          >
+            {carTyres.map((tyre) => (
+              <Tyre key={tyre.id} tyre={tyre} />
+            ))}
+          </Collapsible>
+
         <img src={car.carImage} alt="Car"></img>
         <div></div>
         {car.isAvailableToHire === false && car.currentlyHired === true ? (
-            <form onSubmit={onSubmit}>
-              <input placeholder="Miles Travelled" onChange={(e) => setMiles(e.target.value)}/>
-              <Button variant="contained" type="submit" style={{ backgroundColor: "orange" }}>
-                End Hire
-              </Button>
-            </form>
+          <form onSubmit={onSubmit}>
+            <input
+              placeholder="Miles Travelled"
+              onChange={(e) => setMiles(e.target.value)}
+            />
+            <Button
+              variant="contained"
+              type="submit"
+              style={{ backgroundColor: "orange" }}
+            >
+              End Hire
+            </Button>
+          </form>
         ) : car.isAvailableToHire === false && car.currentlyHired === false ? (
           ""
         ) : (
@@ -83,6 +109,8 @@ export const BigCar = ({ car, onView, completeService, startRental, endRental })
           >
             Complete Service
           </Button>
+        ) : car.currentlyHired === true ? (
+          ""
         ) : (
           <Button
             variant="contained"
@@ -93,7 +121,29 @@ export const BigCar = ({ car, onView, completeService, startRental, endRental })
             Complete Service{" "}
           </Button>
         )}
-        <Button variant="contained">Change Tyres</Button>
+
+        {car.tyreChangeCount > 0 && car.currentlyHired === false ? (
+          <Button
+            variant="contained"
+            style={{ backgroundColor: "orange" }}
+            onClick={() => {
+              completeTyreChange(car.id);
+            }}
+          >
+            Change Tyres
+          </Button>
+        ) : car.currentlyHired === true ? (
+          " "
+        ) : (
+          <Button
+            variant="contained"
+            onClick={() => {
+              completeTyreChange(car.id);
+            }}
+          >
+            Change Tyres
+          </Button>
+        )}
       </div>
     </>
   );

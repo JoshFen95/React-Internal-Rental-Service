@@ -1,21 +1,28 @@
 .nav {
-    height: 75px;
-    padding: 10px;
-    background: #000;
-    color: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    
-  }
-  
-  .nav ul {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    list-style: none;
-  }
-  
-  .nav ul li a {
-    margin: 5px 15px;
-  }
+  height: 75px;
+  padding: 10px;
+  background: #000;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  background: rgba(56, 63, 72, 0.75);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(2.5px);
+  -webkit-backdrop-filter: blur(2.5px);
+  /* border-radius: 10px; */
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.nav ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+}
+
+.nav ul li a {
+  margin: 5px 15px;
+}
+
+

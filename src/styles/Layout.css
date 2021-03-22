@@ -6,6 +6,7 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
+    
 
     background: #bdc3c7;  /* fallback for old browsers */
     background: -webkit-linear-gradient(0deg, #2c3e50, #bdc3c7);  /* Chrome 10-25, Safari 5.1-6 */
@@ -22,5 +23,6 @@
     justify-content: flex-start;
     align-items: center;
     font-size: 1.25rem;
+
   }
 

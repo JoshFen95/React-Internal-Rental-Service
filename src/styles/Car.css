@@ -1,93 +1,93 @@
 .grid {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-    max-width: 1000px;
-    margin-top: 3rem;
-  }
-  
-  .card, .bigCard{
-    margin: 1rem;
-    flex-basis: 45%;
-    padding: 1.5rem;
-    text-align: left;
-    color: inherit;
-    text-decoration: none;
-    border: 1px solid #eaeaea;
-    border-radius: 10px;
-    transition: color 0.15s ease, border-color 0.15s ease;
-  
-  }
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 500px;
+}
 
-  /* Glass Effect  */
 
-  .card, .bigCard{
-    background: rgba( 0, 112, 243, 0.15 );
-    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
-    backdrop-filter: blur( 20.0px );
-    -webkit-backdrop-filter: blur( 20.0px );
-    border-radius: 10px;
-    border: 1px solid rgba( 255, 255, 255, 0.18 );
-  
-  }
-  
-  .card:hover,
+.card,
+.bigCard {
+  margin: 1rem;
+  flex-basis: 45%;
+  padding: 1.5rem;
+  text-align: left;
+  color: inherit;
+  text-decoration: none;
+  border: 1px solid #eaeaea;
+  border-radius: 10px;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+/* Glass Effect  */
+
+.card,
+.bigCard {
+  background: rgba(0, 112, 243, 0.15);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.card:hover,
   .card:focus,
   .card:active
   /* .bigCard:hover,
   .bigCard:focus,
-  .bigCard:active  */
-  {
-    color: white;
-    border-color: white;
-  }
-  
-  .card h3 {
-    margin: 0 0 1rem 0;
-    font-size: 1.5rem;
-  }
-  
-  .card p {
-    margin: 0;
-    font-size: 1.25rem;
-    line-height: 1.5;
-  }
+  .bigCard:active  */ {
+  color: white;
+  border-color: white;
+}
 
-  .card img {
-    width: 400px;
-    height: 250px;
-    align-items: center;
-  }
-  
-  .logo {
-    height: 1em;
-  }
-  
-  @media (max-width: 600px) {
-    .grid {
-      width: 100%;
-      flex-direction: column;
-    }
-  }
 
-  .bigCard img {
-    width: 400px;
-    height: 250px;
-    align-items: center;
-    border-radius: 5px;
+
+.card h3 {
+  margin: 0 0 1rem 0;
+  font-size: 1.5rem;
+}
+
+.card p {
+  margin: 0;
+  font-size: 1.25rem;
+  line-height: 1.5;
+}
+
+.card img {
+  width: 400px;
+  height: 250px;
+  align-items: center;
+}
+
+.logo {
+  height: 1em;
+}
+
+@media (max-width: 600px) {
+  .grid {
+    width: 100%;
+    flex-direction: column;
   }
+}
 
-  .bigCard Button {
-   margin: 10px;
-   border-radius: 5px;
+.bigCard img {
+  width: 400px;
+  height: 250px;
+  align-items: center;
+  border-radius: 5px;
+  padding-top: 25px;
+}
 
-  }
+.bigCard Button {
+  margin: 10px;
+  border-radius: 5px;
+}
 
-  .bigCard form {
-    margin: 10px;
-  }
-
+.bigCard form {
+  margin: 10px;
+}
 
 .bigCard input {
   background: white;
@@ -98,10 +98,37 @@
   margin: 0px;
   width: 160px;
   margin-right: 10px;
-  box-shadow: 0px 3px 1px -2px rgb(0 0 0 / 20%), 0px 2px 2px 0px rgb(0 0 0 / 14%), 0px 1px 5px 0px rgb(0 0 0 / 12%);
+  box-shadow: 0px 3px 1px -2px rgb(0 0 0 / 20%),
+    0px 2px 2px 0px rgb(0 0 0 / 14%), 0px 1px 5px 0px rgb(0 0 0 / 12%);
 }
 
 input:focus::placeholder {
   color: transparent;
+}
+
+.Collapsible__trigger {
+  color: rgba(0, 0, 0, 0.87);
+  box-shadow: 0px 3px 1px -2px rgb(0 0 0 / 20%),
+    0px 2px 2px 0px rgb(0 0 0 / 14%), 0px 1px 5px 0px rgb(0 0 0 / 12%);
+  background-color: #e0e0e0;
+  border-radius: 5px;
+  padding: 6px 16px;
+  font-size: 0.875rem;
+  min-width: 64px;
+  box-sizing: border-box;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-weight: 500;
+  line-height: 1.75;
+  letter-spacing: 0.02857em;
+  text-transform: uppercase;
+}
+
+
+.tyres {
+
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  width: 100px;
+  height: 100px;
+  background-color: red;
 }
 
