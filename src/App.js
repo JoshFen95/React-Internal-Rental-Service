@@ -1,13 +1,25 @@
 import Layout from "../src/components/Layout";
 import { useState, useEffect } from "react";
 import { BrowserRouter as Router } from "react-router-dom";
-import axios from "axios";
+// import dotenv from "dotenv";
+
+
+let HOST
 
 function App() {
+  
+  if (process.env.NODE_ENV === 'production') {
+    const HOST = "https://fendev-rental.herokuapp.com"
+  }
+
+  if (process.env.NODE_ENV === 'dev') {
+    const HOST = "http://localhost:8080"
+  }
   const [cars, setCars] = useState([]);
   const [car, setCar] = useState([]);
   const [carTyres, setCarTyres] = useState([]);
   // console.log(cars);
+  
 
   useEffect(() => {
     const getCars = async () => {
@@ -19,14 +31,14 @@ function App() {
   }, []);
 
   const fetchCars = async () => {
-    const res = await fetch("http://localhost:8080/service/all");
+    const res = await fetch(`${HOST}/service/all`);
     const data = await res.json();
     console.log(data);
     return data;
   };
 
   const fetchCar = async (id) => {
-    const res = await fetch(`http://localhost:8080/service/get/${id}`);
+    const res = await fetch(`${HOST}/service/get/${id}`);
     const data = await res.json();
     console.log(data);
     return data;
@@ -44,7 +56,7 @@ function App() {
   // Complete Service
   const sendCompleteService = async (id) => {
     const res = await fetch(
-      `http://localhost:8080/service/completeservice/${id}`
+      `${HOST}/service/completeservice/${id}`
     );
     console.log(res);
     const car = await res.json();
@@ -60,7 +72,7 @@ function App() {
   // Change tyres
   const sendTyreChange = async (id) => {
     const res = await fetch(
-      `http://localhost:8080/service/changetyres/${id}`
+      `${HOST}/service/changetyres/${id}`
     );
     console.log(res);
     const car = await res.json();
@@ -77,7 +89,7 @@ function App() {
   // Start Rental
   const sendStartRental = async (id) => {
     console.log("HHHEEEELLLOOO");
-    const res = await fetch(`http://localhost:8080/service/startrental/${id}`);
+    const res = await fetch(`${HOST}/service/startrental/${id}`);
     console.log(res);
     const data = await res.json();
     console.log(data.car);
@@ -90,7 +102,7 @@ function App() {
     console.log(distanceTravelled);
     console.log("oi");
   
-    const res = await fetch(`http://localhost:8080/service/endrental/${id}`, {
+    const res = await fetch(`${HOST}/service/endrental/${id}`, {
       headers: {'Content-Type': 'application/json'},
 
       method: 'PUT',
