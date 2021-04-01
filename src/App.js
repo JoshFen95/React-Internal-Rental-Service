@@ -8,13 +8,8 @@ let HOST
 
 function App() {
   
-  if (process.env.NODE_ENV === 'production') {
-    const HOST = "https://fendev-rental.herokuapp.com"
-  }
 
-  if (process.env.NODE_ENV === 'dev') {
-    const HOST = "http://localhost:8080"
-  }
+  console.log(HOST);
   const [cars, setCars] = useState([]);
   const [car, setCar] = useState([]);
   const [carTyres, setCarTyres] = useState([]);
@@ -31,14 +26,14 @@ function App() {
   }, []);
 
   const fetchCars = async () => {
-    const res = await fetch(`${HOST}/service/all`);
+    const res = await fetch(`https://fendev-rental.herokuapp.com/service/all`);
     const data = await res.json();
     console.log(data);
     return data;
   };
 
   const fetchCar = async (id) => {
-    const res = await fetch(`${HOST}/service/get/${id}`);
+    const res = await fetch(`https://fendev-rental.herokuapp.com/service/get/${id}`);
     const data = await res.json();
     console.log(data);
     return data;
@@ -56,7 +51,7 @@ function App() {
   // Complete Service
   const sendCompleteService = async (id) => {
     const res = await fetch(
-      `${HOST}/service/completeservice/${id}`
+      `https://fendev-rental.herokuapp.com/service/completeservice/${id}`
     );
     console.log(res);
     const car = await res.json();
@@ -72,7 +67,7 @@ function App() {
   // Change tyres
   const sendTyreChange = async (id) => {
     const res = await fetch(
-      `${HOST}/service/changetyres/${id}`
+      `https://fendev-rental.herokuapp.com/service/changetyres/${id}`
     );
     console.log(res);
     const car = await res.json();
@@ -89,7 +84,7 @@ function App() {
   // Start Rental
   const sendStartRental = async (id) => {
     console.log("HHHEEEELLLOOO");
-    const res = await fetch(`${HOST}/service/startrental/${id}`);
+    const res = await fetch(`https://fendev-rental.herokuapp.com/service/startrental/${id}`);
     console.log(res);
     const data = await res.json();
     console.log(data.car);
@@ -102,7 +97,7 @@ function App() {
     console.log(distanceTravelled);
     console.log("oi");
   
-    const res = await fetch(`${HOST}/service/endrental/${id}`, {
+    const res = await fetch(`https://fendev-rental.herokuapp.com/service/endrental/${id}`, {
       headers: {'Content-Type': 'application/json'},
 
       method: 'PUT',
